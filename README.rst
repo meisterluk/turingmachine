@@ -1,8 +1,25 @@
 Turingmachine project
 =====================
 
-TODO
-----
+The turingmachine project is an implementation of a Turingmachine
+as web application. It is meant to be used in courses about the
+topic of theoretical computer science. However, it might just be
+fun playing around with it :)
+
+The current state does not provide anything interesting from a user
+perspective... yet.
+
+Next steps
+----------
+
+* API Documentation (with dartdoc)
+* User Documentation (with Sphinx_)
+* UI Frontend design
+
+.. _Sphinx: http://sphinx-doc.org/
+
+Notes
+-----
 
 * provide case-insensitive mode for states
 
