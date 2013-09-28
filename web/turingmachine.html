@@ -5,16 +5,105 @@
     <meta charset="utf-8" />
     <meta name="generator" content="Dart language - dart2js" />
     <link rel="stylesheet" href="turingmachine.css" />
-    <script type="application/dart" src="turingmachine.dart"></script>
     <script src="packages/browser/dart.js"></script>
+    <script type="application/dart" src="turingmachine.dart"></script>
+    <style type="text/css">
+    <!--
+      body { text-align: center; }
+      h1, h2, h3, h4, h5, h6 { text-align: left; }
+      .then { border-left: #000 solid 2px; }
+    -->
+    </style>
   </head>
 
   <body>
     <h1>Turingmachine</h1>
-    
+
     <p>Turing machine for education purposes</p>
-    
-    <div id="tm_canvas">
+
+    <div id="turingmachine">
+      <canvas id="tm_canvas">
+      </canvas>
+
+      <div class="tm_controls">
+        Go <input type="submit" on-click="app.prev()" name="tm_control_prev" value="back" />
+            <input type="text" name="tm_steps_prev" bind-value="app.steps_prev" size="4" min="1" pattern="\d" /> steps
+        <input type="submit" on-click="app.resetSteps()" name="tm_control_reset" value="Reset" />
+        <input type="submit" on-click="app.runSteps()" name="tm_control_run" value="Run" />
+        Go <input type="submit" on-click="app.next()" name="tm_control_next" value="ahead" />
+            <input type="text" bind-value="app.steps_next" name="tm_steps_next" size="4" min="1" pattern="\d" /> steps
+      </div>
+      <div class="tm_io">
+        <a href="#" id="tm_import" on-click="app.import()">Import</a> |
+        <a href="#" id="tm_export" on-click="app.export()">Export</a>
+      </div>
+
+      <div id="tm_description">
+        {{app.description}}
+      </div>
+
+      <p>
+        Load example program:
+          <select name="tm_example" id="tm_program" on-change="app.loadExampleProgram()">
+            <option>{{ app.machine_name }}</option>
+            <option>2bit XOR</option>
+            <option>4bit Addition</option>
+          </select> <br />
+        Run testcase:
+          <select name="tm_testcase" id="tm_testcase" on-change="app.loadTestcase()">
+            <option>(None)</option>
+            <option>Division of 2 numbers</option>
+          </select>
+      </p>
+
+      <h2>Properties</h2>
+      <table>
+        <thead>
+          <tr>
+            <td>Set machine name:</td>
+            <td><input type="text" name="tm_name" size="20" maxlength="255" bind-value="app.machine_name" /></td>
+          </tr>
+          <tr>
+            <td>Case sensitivity:</td>
+            <td><input type="checkbox" bind-checked="app.cs" name="tm_char_sensitivity" /></td>
+          </tr>
+          <tr>
+            <td>History size:</td>
+            <td><input type="text" size="2" bind-value="app.history_size" min="0" pattern="\d" name="tm_history_size" /></td>
+          </tr>
+          <tr>
+            <td>Speed:</td>
+            <td><input type="slider" size="4" bind-value="app.speed" min="1" pattern="\d" name="tm_speed" /></td>
+          </tr>
+      </table>
+
+      <h2>Tape</h2>
+      <p>
+        <input type="text" size="40" value="" pattern="[_0-9]*" name="tm_tape" style="text-align:center" placeholder="000100101111" /> <br>
+        <input type="submit" name="tm_apply_tape" value="Apply" />
+      </p>
+
+      <h2>Transition table</h2>
+      <table>
+        <thead>
+          <tr>
+            <td>Read symbol</td>
+            <td>in state</td>
+            <td class="then">write</td>
+            <td>move</td>
+            <td>go into</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr template iterate="instr in app.instructions">
+            <td><input type="text" name="tm_tt_read" value="{{instr[0]}}" size="5" /></td>
+            <td><input type="text" name="tm_tt_from" value="{{instr[1]}}" size="5" /></td>
+            <td class="then"><input type="text" name="tm_tt_write" value="{{instr[2]}}" size="5" /></td>
+            <td><input type="text" name="tm_tt_move" value="{{instr[3]}}" size="5" /></td>
+            <td><input type="text" name="tm_tt_to" value="{{instr[4]}}" size="5" /></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </body>
 </html>

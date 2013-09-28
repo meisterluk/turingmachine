@@ -1,8 +1,9 @@
 name: turingmachine
 version: 0.1.0-beta
 author: Lukas Prokop <admin@lukas-prokop.at>
-description: A turingmachine for education purposes
+description: A turingmachine for educational purposes
 dependencies:
   js: any
   browser: any
   web_ui: any
+  unittest: any
