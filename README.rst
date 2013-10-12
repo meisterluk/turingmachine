@@ -1,13 +1,22 @@
 Turingmachine project
 =====================
 
+:project:       turingmachine
+:date:          June-Aug 2013
+:author:        meisterluk
+:state:         shut down incomplete
+
 The turingmachine project is an implementation of a Turingmachine
 as web application. It is meant to be used in courses about the
 topic of theoretical computer science. However, it might just be
 fun playing around with it :)
 
-The current state does not provide anything interesting from a user
-perspective... yet.
+The current state does not provide anything interesting.
+
+The project was shut down in Aug 2013 due to recurring annoying
+instabilities of the Google Dart interpreter. The turingmachine.js
+project follows up this project and is implemented in native
+javascript.
 
 Next steps
 ----------
